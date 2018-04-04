@@ -22,8 +22,8 @@
 
     <!-- dependencies -->
     <spring-boot.version>1.5.8.RELEASE</spring-boot.version>
-    <camel.version>2.21.0.000033-fuse-000001-redhat-1</camel.version>
-    <syndesis.version>1.2.9.fuse-000001-redhat-1</syndesis.version>
+    <camel.version>2.21.0</camel.version>
+    <!-- <syndesis.version>1.3.4.fuse-000002</syndesis.version> -->
   </properties>
 
   <dependencyManagement>
@@ -45,14 +45,14 @@
       <dependency>
         <groupId>io.syndesis</groupId>
         <artifactId>syndesis-rest-parent</artifactId>
-        <version>${syndesis.version}</version>
+        <version>1.3.0-20180202</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
-        <groupId>io.syndesis</groupId>
+        <groupId>io.syndesis.integration</groupId>
         <artifactId>integration-runtime</artifactId>
-        <version>${syndesis.version}</version>
+        <version>1.3.4</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -65,7 +65,7 @@
     <dependency>
       <groupId>io.syndesis</groupId>
       <artifactId>syndesis-annotation-processor</artifactId>
-      <version>${syndesis.version}</version>
+        <version>1.2.9</version>
       <optional>true</optional>
     </dependency>
 
@@ -73,6 +73,7 @@
     <dependency>
       <groupId>io.syndesis.integration-runtime</groupId>
       <artifactId>runtime-api</artifactId>
+      <version>1.2.9</version>      
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -121,6 +122,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>${maven-compiler-plugin.version}</version>
         <configuration>
+          <fork>true</fork>
+          <executable>/usr/java/jdk1.8.0_144/bin/javac</executable>
           <source>${java.version}</source>
           <target>${java.version}</target>
         </configuration>
@@ -129,7 +132,7 @@
       <plugin>
         <groupId>io.syndesis</groupId>
         <artifactId>syndesis-maven-plugin</artifactId>
-        <version>${syndesis.version}</version>
+        <version>1.2.9</version>
         <configuration>
           <listAllArtifacts>false</listAllArtifacts>
         </configuration>

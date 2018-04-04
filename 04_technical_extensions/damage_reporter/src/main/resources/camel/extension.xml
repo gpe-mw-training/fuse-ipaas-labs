@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<routes xmlns="http://camel.apache.org/schema/spring" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
-	<route id="damage-report">
-		<from uri="direct:damage-report"/>
-		<log message="Received item list:\n${in.body}" />
-		<unmarshal>
-			<jacksonxml unmarshalTypeName="io.syndesis.example.extension.tp3.InventoryList" />
-		</unmarshal>
-		<bean beanType="io.syndesis.example.extension.tp3.ReportService" method="generateReport" />
-		<when>
-			<simple>${in.body} == null</simple>
-			<log message="No damaged item found."/>
-			<stop/>
-		</when>
-		<!-- Continue otherwise -->
-		<log message="Generated report: ${in.body}"/>
-	</route>
+<routes id="routes-df78413c-0a23-4193-bce2-6845f6413121"
+    xmlns="http://camel.apache.org/schema/spring"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+    <route id="damage-report">
+        <from id="_from1" uri="direct:damage-report"/>
+        <log id="_log1" message="Received item list:\n${in.body}"/>
+        <unmarshal id="_unmarshal1">
+            <jacksonxml unmarshalTypeName="io.syndesis.example.extension.tp3.InventoryList"/>
+        </unmarshal>
+        <!-- Continue otherwise -->
+        <bean beanType="io.syndesis.example.extension.tp3.ReportService"
+            id="_bean1" method="generateReport"/>
+        <when id="_when1">
+            <simple>${in.body} == null</simple>
+            <log id="_log2" message="No damaged item found."/>
+            <stop id="_stop1"/>
+        </when>
+        <log id="_log3" message="Generated report: ${in.body}"/>
+    </route>
 </routes>
