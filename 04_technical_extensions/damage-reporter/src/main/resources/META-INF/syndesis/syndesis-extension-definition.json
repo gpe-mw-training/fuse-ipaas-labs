@@ -1,0 +1,23 @@
+{
+  "tags" : [ "experimental", "feature" ],
+  "actions" : [ {
+    "actionType": "step",
+    "id": "damage-report",
+    "name": "Damage Reporter",
+    "description": "Generates contact list for damaged items",
+    "descriptor": {
+      "kind": "ENDPOINT",
+      "entrypoint": "direct:damage-report",
+      "resource": "classpath:META-INF/syndesis/extensions/extension.xml",
+      "inputDataShape": {
+        "kind": "java",
+        "type": "java.lang.String"
+      },
+      "outputDataShape": {
+        "kind": "java",
+        "type": "io.syndesis.example.extension.tp3.TodoReport"
+      },
+      "propertyDefinitionSteps": []
+    }
+  }]
+}
