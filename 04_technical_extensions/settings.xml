@@ -1,39 +1,123 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
-          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
   <profiles>
     <profile>
-      <id>syndesis</id>
+      <id>redhat-fuse7</id>
       <repositories>
-       <repository>
-         <id>maven-central</id>
-         <name>Central Repository for Maven builds</name>
-         <url>http://central.maven.org/maven2/</url>
-         <layout>default</layout>
-       </repository>
-       <repository>
-         <id>maven-redhat</id>
-         <name>Repository for Maven builds</name>
-         <url>https://maven.repository.redhat.com/earlyaccess/all</url>
-         <layout>default</layout>
-       </repository>
-       <repository>
-         <id>maven-redhat-2</id>
-         <name>Repository for Maven builds</name>
-         <url>https://repository.jboss.org/nexus/content/groups/ea/</url>
-         <layout>default</layout>
-       </repository>
-       <repository>
-           <id>syndesis-local</id>
-           <name>Repository for Syndesis builds</name>
-           <url>file:///tmp/maven-syndesis-extension-1.0.0.fuse-000018</url>
-           <layout>default</layout>
-       </repository>
+        <repository>
+          <id>maven-central</id>
+          <name>Central Repository for Maven builds</name>
+          <url>http://central.maven.org/maven2/</url>
+          <layout>default</layout>
+        </repository>
+        <repository>
+          <id>maven-redhat</id>
+          <name>Repository for Maven builds</name>
+          <url>https://maven.repository.redhat.com/earlyaccess/all</url>
+          <layout>default</layout>
+        </repository>
+        <repository>
+          <id>redhat-ga-repository</id>
+          <name>Red Hat GA repository</name>
+          <url>http://maven.repository.redhat.com/ga/</url>
+          <releases>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+            <updatePolicy>daily</updatePolicy>
+          </snapshots>
+        </repository>
+        <repository>
+          <id>fuse-public-repository</id>
+          <name>FuseSource Community Release Repository</name>
+          <url>https://repo.fusesource.com/nexus/content/groups/public</url>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+          <releases>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+          </releases>
+        </repository>
+        <repository>
+          <id>fusesource-ea</id>
+          <name>JBoss Community Early Access Release Repository</name>
+          <url>https://repo.fusesource.com/nexus/content/groups/ea</url>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+          <releases>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+          </releases>
+        </repository>
+        <repository>
+            <id>tech-extensions</id>
+            <name>Repository for Syndesis builds</name>
+            <url>file:///tmp/maven-syndesis-extension-1.0.0.fuse-000027</url>
+            <layout>default</layout>
+        </repository>
       </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <id>fuse-public-repository</id>
+          <name>FuseSource Community Release Repository</name>
+          <url>https://repo.fusesource.com/nexus/content/groups/public</url>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+          <releases>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+          </releases>
+        </pluginRepository>
+        <pluginRepository>
+          <id>fusesource-ea</id>
+          <name>JBoss Community Early Access Release Repository</name>
+          <url>https://repo.fusesource.com/nexus/content/groups/ea</url>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+          <releases>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+          </releases>
+        </pluginRepository>
+        <pluginRepository>
+          <id>redhat-ga-repository</id>
+          <name>Red Hat GA repository</name>
+          <url>http://maven.repository.redhat.com/ga/</url>
+          <releases>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+            <updatePolicy>daily</updatePolicy>
+          </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>jboss-fuse-ga</id>
+            <url>https://repository.jboss.org/nexus/content/groups/ga</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>tech-extensions</id>
+            <name>Repository for Syndesis builds</name>
+            <url>file:///tmp/maven-syndesis-extension-1.0.0.fuse-000027</url>
+            <layout>default</layout>
+        </pluginRepository>
+      </pluginRepositories>
     </profile>
   </profiles>
   <activeProfiles>
-    <activeProfile>syndesis</activeProfile>
+    <activeProfile>redhat-fuse7</activeProfile>
   </activeProfiles>
 </settings>
