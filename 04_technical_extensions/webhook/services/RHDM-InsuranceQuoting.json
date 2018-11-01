@@ -1,0 +1,304 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Insurance Quoting",
+    "description": "RHDM - Insurance Quoting",
+    "version": "1.0.0"
+  },
+  "basePath": "/services/rest",
+  "paths": {
+    "/server/containers/instances/{id}": {
+      "post": {
+        "tags": [
+          "Rules evaluation :: BRM"
+        ],
+        "summary": "Evaluates rules by executing commands on the rule session",
+        "description": "",
+        "operationId": "manageContainer",
+        "consumes": [
+          "application/xml",
+          "application/json"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Container id where rules should be evaluated on",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Commands to be executed on rule engine given as BatchExecutionCommand type",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/QuoteRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/QuoteResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "QuoteRequest": {
+      "title": "Root Type for QuoteRequest",
+      "description": "The root of the QuoteRequest type's schema.",
+      "type": "object",
+      "properties": {
+        "lookup": {
+          "type": "string"
+        },
+        "commands": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Command"
+          }
+        }
+      }
+    },
+    "Driver": {
+      "title": "Root Type for Driver",
+      "description": "The root of the Driver type's schema.",
+      "type": "object",
+      "properties": {
+        "age": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "fines": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "validLicense": {
+          "type": "boolean"
+        },
+        "driverID": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Vehicle": {
+      "title": "Root Type for Vehicle",
+      "description": "The root of the Vehicle type's schema.",
+      "type": "object",
+      "properties": {
+        "maker": {
+          "type": "string"
+        },
+        "model": {
+          "type": "string"
+        },
+        "modelYear": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "mileage": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "licensePlate": {
+          "type": "string"
+        }
+      }
+    },
+    "Insert": {
+      "required": [
+        "object",
+        "return-object"
+      ],
+      "properties": {
+        "object": {
+          "$ref": "#/definitions/InsertObject"
+        },
+        "return-object": {
+          "default": true,
+          "type": "boolean"
+        },
+        "out-identifier": {
+          "default": "quote",
+          "type": "string"
+        }
+      }
+    },
+    "ExecutionResults": {
+      "title": "Root Type for ExecutionResults",
+      "description": "The root of the ExecutionResults type's schema.",
+      "required": [
+        "results"
+      ],
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Results"
+          }
+        },
+        "facts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Facts"
+          }
+        }
+      }
+    },
+    "InsertObject": {
+      "properties": {
+        "com.redhat.insurancequoting.Quote": {
+          "$ref": "#/definitions/Quote"
+        }
+      }
+    },
+    "FireAllRules": {
+      "properties": {
+        "outIdentifier": {
+          "type": "string"
+        },
+        "max": {
+          "type": "integer"
+        }
+      }
+    },
+    "Command": {
+      "title": "Root Type for Command",
+      "description": "The root of the Command type's schema.",
+      "required": [
+        "commandType"
+      ],
+      "type": "object",
+      "properties": {
+        "insert": {
+          "$ref": "#/definitions/Insert"
+        }
+      }
+    },
+    "Results": {
+      "title": "Root Type for Result",
+      "description": "The root of the Result type's schema.",
+      "type": "object",
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/ResultsObject"
+        },
+        "key": {
+          "default": "quote",
+          "type": "string"
+        }
+      }
+    },
+    "Result": {
+      "required": [
+        "execution-results"
+      ],
+      "properties": {
+        "execution-results": {
+          "$ref": "#/definitions/ExecutionResults"
+        }
+      }
+    },
+    "Facts": {
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "value": {
+          "$ref": "#/definitions/DefaultFactHandle"
+        }
+      }
+    },
+    "ResultsObject": {
+      "required": [
+        "com.redhat.insurancequoting.Quote\""
+      ],
+      "properties": {
+        "com.redhat.insurancequoting.Quote": {
+          "$ref": "#/definitions/Quote"
+        }
+      }
+    },
+    "DefaultFactHandle": {
+      "properties": {
+        "org.drools.core.common.DefaultFactHandle": {
+          "$ref": "#/definitions/external-form"
+        }
+      }
+    },
+    "external-form": {
+      "properties": {
+        "external-form": {
+          "type": "string"
+        }
+      }
+    },
+    "QuoteResponse": {
+      "title": "Root Type for QuoteResponse",
+      "description": "The root of the QuoteResponse type's schema.",
+      "required": [
+        "result"
+      ],
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "result": {
+          "$ref": "#/definitions/Result"
+        }
+      }
+    },
+    "Quote": {
+      "title": "Root Type for Quote",
+      "description": "The root of the Quote type's schema.",
+      "type": "object",
+      "properties": {
+        "driver": {
+          "$ref": "#/definitions/Driver"
+        },
+        "vehicle": {
+          "$ref": "#/definitions/Vehicle"
+        },
+        "price": {
+          "type": "integer"
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "basic": {
+      "type": "basic"
+    }
+  },
+  "security": [
+    {
+      "basic": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Rules evaluation :: BRM"
+    }
+  ]
+}

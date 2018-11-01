@@ -1,0 +1,117 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Driver",
+    "description": "This is a generic API definition for manipulation of Driver resources. It contains basic CRUD operations for Driver resources.",
+    "version": "1.0"
+  },
+  "paths": {
+    "/Driver": {
+      "get": {
+        "summary": "Retrieve Driver resources",
+        "description": "Retrieve a bunch of Driver resources. Specifiy exemple resource as body payload.",
+        "responses": {
+          "200": {
+            "description": "Get an array of Driver resources"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create new Driver resource",
+        "description": "Create a new Driver resource. Specify payload within request body.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/AnyType"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Get the newly created Driver resource."
+          }
+        }
+      }
+    },
+    "/Driver/{id}": {
+      "get": {
+        "summary": "Retrieve a Driver resource.",
+        "description": "Retrieve an already existing Driver resource having the specified id.",
+        "responses": {
+          "200": {
+            "description": "Driver resource having specified id.",
+            "schema": {
+              "$ref": "#/definitions/Driver"
+            }
+          },
+          "404": {
+            "description": "No Driver resource have the specified id."
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a Driver resource.",
+        "description": "Update an already existing Driver resource having the specified id.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "The payload of resource Driver to update.",
+            "schema": {
+              "$ref": "#/definitions/AnyType"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated resource Driver having the specified id.",
+            "schema": {
+              "$ref": "#/definitions/AnyType"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a Driver resource.",
+        "description": "Remove an existing Driver resource having the specified id.",
+        "responses": {
+          "204": {
+            "description": "Resource Driver with specified id has been removed."
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "query",
+          "description": "Resource Driver unique identifier.",
+          "type": "string"
+        }
+      ]
+    }
+  },
+  "definitions": {
+    "AnyType": {},
+    "Driver": {
+      "properties": {
+        "driverID": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "validLicense": {
+          "type": "boolean"
+        },
+        "fines": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,4 @@
+{
+	"driver": {"age":20, "firstName": "Pablo", "lastName": "Szuster", "validLicense": true, "driverID": 12345, "id": "abc123"},
+        "vehicle": {"maker": "Chevrolet", "model": "Cruze","modelYear": 2017, "mileage": 500,"licensePlate": "ABC123"}
+}
